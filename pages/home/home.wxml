@@ -1,25 +1,22 @@
 <!--pages/home/home.wxml-->
-
-
-<!-- 轮播图 -->
-<w-swiper list="{{banners}}"/>
-
-<!-- 推荐数据的展示 -->
-<w-recommend list="{{recommends}}" bind:imgLoad="imgLoad"/>
-
-<!-- 展示本周流行 -->
-<w-popular/>
-
-<!-- tabControl -->
-<w-tab-control titles="{{titles}}"
-               bind:tabClick="handleTabClick"
-               id="tab-control"
-               class="{{isTabFixed ? 'fixed' : ''}}"/>
-<w-tab-control titles="{{titles}}"
-               wx:if="{{isTabFixed}}"/>
-
-<!-- 商品的展示 -->
-<w-goods goods="{{goods[currentType].list}}"/>
-
-<!-- 回到顶部 -->
-<w-back-top wx:if="{{showBackTop}}"/>
+<view class='home'>
+  <view hidden='{{!showTabControl}}'>
+    <w-tab-control class='tab-control-temp' 
+                 titles="{{titles}}" 
+                 bind:tabclick="tabClick"/>
+  </view>
+  
+  <scroll-view class='content' 
+              scroll-y 
+              bindscrolltolower="loadMore"
+              scroll-with-animation="true"
+              scroll-top="{{topPosition}}"
+              bindscroll="scrollPosition">
+    <w-swiper images="{{banners}}"/>
+    <w-recommend recommends="{{recommends}}" bind:imageLoad="onImageLoad"/>
+    <w-feature/>
+    <w-tab-control class='tab-control' titles="{{titles}}" bind:tabclick="tabClick"/>
+    <w-goods goodslist="{{goods[currentType].list}}"/>
+    <w-back-top bindtap="onBackTop" wx:if="{{showBackTop}}"/>
+  </scroll-view> 
+</view>

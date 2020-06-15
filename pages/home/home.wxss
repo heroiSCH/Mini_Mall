@@ -1,8 +1,18 @@
 /* pages/home/home.wxss */
-.fixed{
+.home {
+  height: 100%;
+}
+
+.content {
+  height: 100%;
+}
+
+.tab-control-temp {
   position: fixed;
-  top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  top: 0;
+  z-index: 9;
+  background: #fff;
 }
+
